@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -Djavax.net.ssl.keyStore=src/main/resources/tls/apple-pay.p12 -Djavax.net.ssl.keyStorePassword=$KEYSTORE_PASSWORD -Djavax.net.ssl.keyStoreType=PKCS12 -jar target/applepay-sample-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -Djavax.net.ssl.keyStore=src/main/resources/tls/apple-pay.p12 -Djavax.net.ssl.keyStorePassword=$KEYSTORE_PASSWORD -Djavax.net.ssl.keyStoreType=PKCS12 -Djavax.net.debug=ssl -jar target/applepay-sample-0.0.1-SNAPSHOT.jar
