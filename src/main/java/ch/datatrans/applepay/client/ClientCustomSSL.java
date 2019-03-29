@@ -60,7 +60,7 @@ public class ClientCustomSSL {
 	 public String createSession(String validationUrl, String origin) throws IOException {
 			 try {
 				 SSLContext sslcontext = SSLContexts.custom()
-			                .loadTrustMaterial(ResourceUtils.getFile("classpath:tls/apple-pay.p12"), "123456".toCharArray(),
+			                .loadTrustMaterial(new File(ClassLoader.getSystemResource("apple-pay.p12").getPath()), "123456".toCharArray(),
 			                        new TrustSelfSignedStrategy())
 			                .build();
 			        // Allow TLSv1 protocol only
