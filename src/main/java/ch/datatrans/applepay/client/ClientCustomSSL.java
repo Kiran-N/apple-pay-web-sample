@@ -78,6 +78,7 @@ public class ClientCustomSSL {
 	            httppost.setEntity(entity);
 	            System.out.println("Executing request " + httppost.getRequestLine());
 	            CloseableHttpResponse response = httpclient.execute(httppost);
+	            httpclient.close();
 	            try {
 	                HttpEntity responseEntity = response.getEntity();
 
@@ -92,10 +93,6 @@ public class ClientCustomSSL {
 		 catch(Exception e){
 			 e.printStackTrace();
 		 }
-		 finally {
-	            httpclient.close();
-	     }
-		 
 		 
 	        return retSrc;
 	    }
