@@ -59,6 +59,8 @@ public class ClientCustomSSL {
 
 	 public String createSession(String validationUrl, String origin) throws IOException {
 			 try {
+				 System.out.println(ClassLoader.getSystemResource("apple-pay.p12").getPath());
+				 System.out.println(new File(ClassLoader.getSystemResource("apple-pay.p12").getPath()).toString());
 				 SSLContext sslcontext = SSLContexts.custom()
 			                .loadTrustMaterial(new File(ClassLoader.getSystemResource("apple-pay.p12").getPath()), "123456".toCharArray(),
 			                        new TrustSelfSignedStrategy())
