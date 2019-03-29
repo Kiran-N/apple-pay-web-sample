@@ -45,6 +45,7 @@ import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
 
 /**
  * This example demonstrates how to create secure connections with a custom SSL
@@ -57,8 +58,20 @@ public class ClientCustomSSL {
  	String retSrc;
 
 	 public String createSession(String validationUrl, String origin) throws IOException {
-		 	CloseableHttpClient httpclient = HttpClients.createDefault();
-		 try {
+			 try {
+				 SSLContext sslcontext = SSLContexts.custom()
+			                .loadTrustMaterial(ResourceUtils.getFile("classpath:tls/apple-pay.p12"), "123456".toCharArray(),
+			                        new TrustSelfSignedStrategy())
+			                .build();
+			        // Allow TLSv1 protocol only
+			        SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
+			                sslcontext,
+			                new String[] { "TLSv1.2" },
+			                null,
+			                SSLConnectionSocketFactory.getDefaultHostnameVerifier());
+			        CloseableHttpClient httpclient = HttpClients.custom()
+			                .setSSLSocketFactory(sslsf)
+			                .build();	
 	            HttpPost httppost = new HttpPost(validationUrl);
 	            httppost.addHeader("content-type", "application/json");
 	            HttpEntity entity = new StringEntity("{\"merchantIdentifier\":\"merchant.com.herokuapp.ewallet-applepay\", \"domainName\":\"ewallet-applepay.herokuapp.com\", \"displayName\":\"ewallet-applepay\"}");
