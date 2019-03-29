@@ -1,7 +1,6 @@
 package ch.datatrans.applepay;
 
 import ch.datatrans.applepay.client.ApplePayClient;
-import ch.datatrans.applepay.client.ClientCustomSSL;
 import ch.datatrans.applepay.client.DatatransClient;
 import ch.datatrans.applepay.request.AuthorizeRequest;
 import ch.datatrans.applepay.request.StartSessionRequest;
@@ -34,13 +33,11 @@ public class ApplePayController {
 
     private DatatransClient datatransClient;
     private ApplePayClient applePayClient;
-    private ClientCustomSSL customSSL; 
 
     @Autowired
-    public ApplePayController(DatatransClient datatransClient, ApplePayClient applePayClient, ClientCustomSSL customSSL) {
+    public ApplePayController(DatatransClient datatransClient, ApplePayClient applePayClient) {
         this.datatransClient = datatransClient;
         this.applePayClient = applePayClient;
-        this.customSSL = customSSL;
     }
 
     @PostMapping("/session/create")
@@ -53,10 +50,7 @@ public class ApplePayController {
         if(StringUtils.isBlank(originHeader)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-
-//        String response = applePayClient.createSession(startSessionRequest.getValidationUrl(), originHeader);
-        
-        String response = customSSL.createSession(startSessionRequest.getValidationUrl(), originHeader);
+        String response = applePayClient.createSession(startSessionRequest.getValidationUrl(), originHeader);
         return ResponseEntity.ok(response);
     }
 
