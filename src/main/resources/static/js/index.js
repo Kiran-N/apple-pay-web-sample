@@ -74,7 +74,7 @@ function applePayButtonClicked() {
 
     };
 
-    const session = new ApplePaySession(1, paymentRequest);
+    const session = new ApplePaySession(3, paymentRequest);
     console.log("session object created")
 /*
     session.oncancel = (event) => {
