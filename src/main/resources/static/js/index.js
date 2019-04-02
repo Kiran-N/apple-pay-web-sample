@@ -102,6 +102,7 @@ function applePayButtonClicked() {
      * the total price. We can use the shipping method identifier to determine
      * which method was selected.
      */
+ /*
     session.onshippingmethodselected = (event) => {
         console.log("onshippingmethodselected");
         // const shippingCost = event.shippingMethod.identifier === 'free' ? '0.00' : '5.00';
@@ -121,6 +122,7 @@ function applePayButtonClicked() {
         //
         // session.completeShippingMethodSelection(ApplePaySession.STATUS_SUCCESS, total, lineItems);
     };
+    */
 
     /**
      * Payment Authorization
@@ -128,6 +130,7 @@ function applePayButtonClicked() {
      * on to your payment provider for processing, and return an appropriate
      * status in session.completePayment()
      */
+ /*
     session.onpaymentauthorized = (event) => {
         console.log("onpaymentauthorized");
         // Send payment for processing...
@@ -149,6 +152,7 @@ function applePayButtonClicked() {
         });
 
     };
+    */
 
     // All our handlers are setup - start the Apple Pay payment
     console.log("start Apple Pay payment");
